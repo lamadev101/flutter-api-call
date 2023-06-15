@@ -19,7 +19,9 @@ class CartProductWidget extends StatelessWidget {
         title: Text(product.title),
         trailing: IconButton(
           icon: const Icon(Icons.remove_circle),
-          onPressed: () {},
+          onPressed: () {
+            // cartBloc.remove()
+          },
         ),
       ),
     );

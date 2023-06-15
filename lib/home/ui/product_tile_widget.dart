@@ -77,8 +77,7 @@ class ProductTileWidget extends StatelessWidget {
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.fromLTRB(12, 20, 12, 20),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                          2.0), // Adjust the value to change the button's roundness
+                      borderRadius: BorderRadius.circular(2.0),
                     ),
                     backgroundColor: Colors.blue.shade600,
                   ),

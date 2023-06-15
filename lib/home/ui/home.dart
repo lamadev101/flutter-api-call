@@ -1,4 +1,6 @@
+import 'package:apicall/cart/bloc/cart_bloc.dart';
 import 'package:apicall/cart/ui/cart.dart';
+import 'package:apicall/home/ui/app_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:apicall/home/bloc/home_bloc.dart';
 import 'package:apicall/home/ui/product_tile_widget.dart';
@@ -45,6 +47,8 @@ class _HomeState extends State<Home> {
 
           case HomeLoadedSuccessState:
             final successState = state as HomeLoadedSuccessState;
+            // final item = state as CartSuccessState;
+
             return Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.orange.shade800,
@@ -56,15 +60,23 @@ class _HomeState extends State<Home> {
                       },
                       icon: const Icon(Icons.favorite_border)),
                   Stack(children: [
-                    const Text(
-                      '4',
-                      style: TextStyle(
-                          color: Colors.white, backgroundColor: Colors.amber),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 1),
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        '${successState.products.length}',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                     IconButton(
-                        onPressed: () {
-                          homeBloc.add(HomeCartButtonNavigateEvent());
-                        },
+                        onPressed: () {},
                         icon: const Icon(Icons.shopping_bag_outlined)),
                   ]),
                 ],

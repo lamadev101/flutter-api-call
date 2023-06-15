@@ -49,33 +49,7 @@ class _CartState extends State<Cart> {
                             cartBloc: cartBloc);
                       });
                 } else {
-                  return Center(
-                      child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text("Your cart is empty"),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        ElevatedButton(
-                            style: const ButtonStyle(
-                                backgroundColor:
-                                    MaterialStatePropertyAll<Color>(
-                                        Colors.red)),
-                            onPressed: () {
-                              homeBloc.add(HomeCartButtonNavigateEvent());
-                            },
-                            child: const Text(
-                              "Go Back",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  backgroundColor: Colors.red),
-                            ))
-                      ],
-                    ),
-                  ));
+                  return EmptyCart(homeBloc: homeBloc);
                 }
               case CartErrorState:
                 return const Scaffold(
@@ -87,5 +61,42 @@ class _CartState extends State<Cart> {
             }
           },
         ));
+  }
+}
+
+class EmptyCart extends StatelessWidget {
+  const EmptyCart({
+    super.key,
+    required this.homeBloc,
+  });
+
+  final HomeBloc homeBloc;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text("Your cart is empty"),
+          const SizedBox(
+            height: 10,
+          ),
+          ElevatedButton(
+              style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll<Color>(Colors.red)),
+              onPressed: () {
+                homeBloc.add(HomeCartButtonNavigateEvent());
+              },
+              child: const Text(
+                "Go Back",
+                style:
+                    TextStyle(color: Colors.white, backgroundColor: Colors.red),
+              ))
+        ],
+      ),
+    ));
   }
 }
